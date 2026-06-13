@@ -1,0 +1,22 @@
+{% extends 'bg.html' %}
+{% block main %}
+<div class="main-div">
+    <h3>Enter The CHAT</h3>
+    <form method="POST" class="form">
+        <div>
+            <!-- <label for="name">Enter Your Name</label> -->
+            <input placeholder="Enter Your Name" type="text" name="name" id="name" class="f" value="{{name}}" />
+        </div>
+        <div>
+            <!-- <label for="name">Enter Room <Code></Code></label> -->
+            <input placeholder="Enter Room Code" type="text" name="code" id="code" class="f" value="{{code}}" />
+        </div>
+        <button type="submit" name="join">Join room</button>
+        <button type="submit" name="create">Create room</button>
+    </form>
+</div>
+{% if error %}
+<p class="error">{{error}}
+</p>
+{% endif %}
+{% endblock %}
