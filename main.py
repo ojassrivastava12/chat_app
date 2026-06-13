@@ -103,8 +103,6 @@ def connect(auth):
         "update_count",
         {"count": rooms[room]}
     )
-    print(f'{name} joined the room, {room}')
-    print(rooms)
 
 
 
