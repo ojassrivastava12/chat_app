@@ -14,7 +14,7 @@ def generate_room():
             break
     x = str(x)
     return x
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 def check_room(room):
     for i in rooms.keys():
@@ -131,4 +131,4 @@ def disconnect(auth):
     )
     print(f'{name} left the room, {room}')
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app)
