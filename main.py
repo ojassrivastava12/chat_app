@@ -6,6 +6,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret_key"
 
 rooms = {}#{room:user}
+
+#_____________Random Room Generator
 def generate_room():
     x = 0
     while True:
@@ -16,16 +18,8 @@ def generate_room():
     return x
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-def check_room(room):
-    for i in rooms.keys():
-        if room == i:
-            return True
-        else:
-            pass
-    return False
 
-
-
+#______HOME PAGE_________
 @app.route('/', methods = ['POST', 'GET'])
 def home():
     session.clear()
@@ -57,7 +51,7 @@ def home():
     return render_template('main.html') 
 
 
-
+#_______CHAT ROOM________
 @app.route("/room")
 def chat_room():
     room = session.get("room")
@@ -66,6 +60,7 @@ def chat_room():
     
     return render_template('room.html', code=room, rooms=rooms)
 
+#___SOCKET IO LOGIC______
 @socketio.on('message')
 def message(data):
     room = session.get("room")
@@ -130,5 +125,8 @@ def disconnect(auth):
     room=room
     )
     print(f'{name} left the room, {room}')
+
+
+
 if __name__ == '__main__':
     socketio.run(app)
